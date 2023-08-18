@@ -1,9 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-
 struct Funcionario {
-
     char nome[100];
     char cargo[100];
     double salarioBase;
@@ -17,11 +15,9 @@ struct Funcionario calcularSalarioLiquido(struct Funcionario funcionario) {
     return funcionario;
 }
 
-
 int cadastrarOutroFuncionario() {
-
     char resposta;
-    printf("Cadastrar outro funcionário? (S/N): ");
+    printf("Cadastrar outro funcionario? (S/N): ");
     scanf(" %c", &resposta);
     if (resposta == 'S' || resposta == 's') {
         return 1;
@@ -31,12 +27,11 @@ int cadastrarOutroFuncionario() {
 }
 
 int main() {
-
     struct Funcionario funcionarios[10];
     int numFuncionarios = 0;
 
     while (numFuncionarios < 10 && cadastrarOutroFuncionario()) {
-        printf("Funcionário %d:\n", numFuncionarios + 1);
+        printf("Funcionario %d:\n", numFuncionarios + 1);
 
         printf("Nome: ");
         scanf(" %[^\n]", funcionarios[numFuncionarios].nome);
@@ -44,10 +39,10 @@ int main() {
         printf("Cargo: ");
         scanf(" %[^\n]", funcionarios[numFuncionarios].cargo);
 
-        printf("Salário base: ");
+        printf("Salario base: ");
         scanf(" %lf", &funcionarios[numFuncionarios].salarioBase);
 
-        printf("Benefícios: ");
+        printf("Beneficios: ");
         scanf(" %lf", &funcionarios[numFuncionarios].beneficios);
 
         printf("Descontos: ");
@@ -55,21 +50,18 @@ int main() {
 
         funcionarios[numFuncionarios] = calcularSalarioLiquido(funcionarios[numFuncionarios]);
 
-        printf("Funcionário cadastrado.\n");
-
-
+        printf("Funcionario cadastrado.\n");
 
         numFuncionarios++;
     }
 
-    printf("\nDados dos funcionários:\n");
+    printf("\nDados dos funcionarios:\n");
 
     for (int i = 0; i < numFuncionarios; ++i) {
-
-        printf("Funcionário %d:\n", i + 1);
+        printf("Funcionario %d:\n", i + 1);
         printf("Nome: %s\n", funcionarios[i].nome);
         printf("Cargo: %s\n", funcionarios[i].cargo);
-        printf("Salário líquido: %.2lf\n\n", funcionarios[i].salarioLiquido);
+        printf("Salario liquido: %.2lf\n\n", funcionarios[i].salarioLiquido);
     }
 
     double totalSalarios = 0.0;
@@ -79,21 +71,20 @@ int main() {
     }
 
     double mediaSalarial = totalSalarios / numFuncionarios;
-    printf("Média salarial da loja: %.2lf\n", mediaSalarial);
+    printf("Media salarial da loja: %.2lf\n", mediaSalarial);
 
     double maiorSalario = funcionarios[0].salarioLiquido;
     char nomeMaiorSalario[100];
     strcpy(nomeMaiorSalario, funcionarios[0].nome);
 
     for (int i = 1; i < numFuncionarios; ++i) {
-
         if (funcionarios[i].salarioLiquido > maiorSalario) {
             maiorSalario = funcionarios[i].salarioLiquido;
             strcpy(nomeMaiorSalario, funcionarios[i].nome);
         }
     }
 
-    printf("Funcionário com o maior salário: %s (Salário: %.2lf)\n", nomeMaiorSalario, maiorSalario);
+    printf("Funcionario com o maior salario: %s (Salario: %.2lf)\n", nomeMaiorSalario, maiorSalario);
 
     return 0;
 }
